@@ -10,6 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_05_12_064251) do
+
+  create_table "delivers", charset: "utf8mb4", force: :cascade do |t|
+    t.string "type"
+    t.integer "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text "reason"
+    t.integer "request_id"
+    t.integer "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "requests", charset: "utf8mb4", force: :cascade do |t|
+    t.string "type"
+    t.integer "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text "reason"
+    t.integer "item_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "role"
+    t.string "password"
+    t.string "phone_number"
+    t.integer "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
