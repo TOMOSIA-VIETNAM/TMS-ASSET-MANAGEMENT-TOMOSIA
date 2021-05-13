@@ -1,3 +1,1 @@
-class Category < ApplicationRecord
-  has_many :items,
-end
+class Category < ApplicationRecord; end

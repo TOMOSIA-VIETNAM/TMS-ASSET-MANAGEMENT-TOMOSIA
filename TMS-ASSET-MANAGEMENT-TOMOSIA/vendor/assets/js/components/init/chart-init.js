@@ -1,20 +1,12 @@
-//
-// Charts
-//
-
 'use strict';
 
 var Charts = (function() {
-
-	// Variable
-
 	var $toggle = $('[data-toggle="chart"]');
-	var mode = 'light';//(themeMode) ? themeMode : 'light';
+	var mode = 'light';
 	var fonts = {
 		base: 'Open Sans'
 	}
 
-	// Colors
 	var colors = {
 		gray: {
 			100: '#f6f9fc',
@@ -40,14 +32,8 @@ var Charts = (function() {
 		white: '#FFFFFF',
 		transparent: 'transparent',
 	};
-
-
-	// Methods
-
-	// Chart.js global options
 	function chartOptions() {
 
-		// Options
 		var options = {
 			defaults: {
 				global: {
@@ -116,7 +102,6 @@ var Charts = (function() {
 			}
 		}
 
-		// yAxes
 		Chart.scaleService.updateScaleDefaults('linear', {
 			gridLines: {
 				borderDash: [2],
@@ -141,7 +126,6 @@ var Charts = (function() {
 			}
 		});
 
-		// xAxes
 		Chart.scaleService.updateScaleDefaults('category', {
 			gridLines: {
 				drawBorder: false,
@@ -158,7 +142,6 @@ var Charts = (function() {
 
 	}
 
-	// Parse global options
 	function parseOptions(parent, options) {
 		for (var item in options) {
 			if (typeof options[item] !== 'object') {
@@ -169,7 +152,6 @@ var Charts = (function() {
 		}
 	}
 
-	// Push options
 	function pushOptions(parent, options) {
 		for (var item in options) {
 			if (Array.isArray(options[item])) {
@@ -182,7 +164,6 @@ var Charts = (function() {
 		}
 	}
 
-	// Pop options
 	function popOptions(parent, options) {
 		for (var item in options) {
 			if (Array.isArray(options[item])) {
@@ -195,60 +176,38 @@ var Charts = (function() {
 		}
 	}
 
-	// Toggle options
 	function toggleOptions(elem) {
 		var options = elem.data('add');
 		var $target = $(elem.data('target'));
 		var $chart = $target.data('chart');
 
 		if (elem.is(':checked')) {
-
-			// Add options
 			pushOptions($chart, options);
-
-			// Update chart
 			$chart.update();
 		} else {
-
-			// Remove options
 			popOptions($chart, options);
-
-			// Update chart
 			$chart.update();
 		}
 	}
-
-	// Update options
 	function updateOptions(elem) {
 		var options = elem.data('update');
 		var $target = $(elem.data('target'));
 		var $chart = $target.data('chart');
-
-		// Parse options
 		parseOptions($chart, options);
-
-		// Toggle ticks
 		toggleTicks(elem, $chart);
-
-		// Update chart
 		$chart.update();
 	}
-
-	// Toggle ticks
 	function toggleTicks(elem, $chart) {
 
 		if (elem.data('prefix') !== undefined || elem.data('prefix') !== undefined) {
 			var prefix = elem.data('prefix') ? elem.data('prefix') : '';
 			var suffix = elem.data('suffix') ? elem.data('suffix') : '';
-
-			// Update ticks
 			$chart.options.scales.yAxes[0].ticks.callback = function(value) {
 				if (!(value % 10)) {
 					return prefix + value + suffix;
 				}
 			}
 
-			// Update tooltips
 			$chart.options.tooltips.callbacks.label = function(item, data) {
 				var label = data.datasets[item.datasetIndex].label || '';
 				var yLabel = item.yLabel;
@@ -265,15 +224,9 @@ var Charts = (function() {
 		}
 	}
 
-
-	// Events
-
-	// Parse global options
 	if (window.Chart) {
 		parseOptions(Chart, chartOptions());
 	}
-
-	// Toggle options
 	$toggle.on({
 		'change': function() {
 			var $this = $(this);
@@ -290,10 +243,6 @@ var Charts = (function() {
 			}
 		}
 	});
-
-
-	// Return
-
 	return {
 		colors: colors,
 		fonts: fonts,

@@ -1,18 +1,10 @@
-//
-// Navbar
-//
-
 'use strict';
 
 var Navbar = (function() {
 
-	// Variables
-
 	var $nav = $('.navbar-nav, .navbar-nav .nav');
 	var $collapse = $('.navbar .collapse');
 	var $dropdown = $('.navbar .dropdown');
-
-	// Methods
 
 	function accordion($this) {
 		$this.closest($nav).find($collapse).not($this).collapse('hide');
@@ -28,9 +20,6 @@ var Navbar = (function() {
     	}, 200);
 	}
 
-
-	// Events
-
 	$collapse.on({
 		'show.bs.collapse': function() {
 			accordion($(this));
@@ -42,24 +31,12 @@ var Navbar = (function() {
 			closeDropdown($(this));
 		}
 	})
-
 })();
-
-
-//
-// Navbar collapse
-//
-
 
 var NavbarCollapse = (function() {
 
-	// Variables
-
 	var $nav = $('.navbar-nav'),
 		$collapse = $('.navbar .navbar-custom-collapse');
-
-
-	// Methods
 
 	function hideNavbarCollapse($this) {
 		$this.addClass('collapsing-out');
@@ -68,9 +45,6 @@ var NavbarCollapse = (function() {
 	function hiddenNavbarCollapse($this) {
 		$this.removeClass('collapsing-out');
 	}
-
-
-	// Events
 
 	if ($collapse.length) {
 		$collapse.on({
@@ -106,9 +80,6 @@ var NavbarCollapse = (function() {
 
 		 $('body').addClass('nav-open');
 			navbar_menu_visible = 1;
-
 		}
-
 	});
-
 })();

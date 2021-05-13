@@ -1,18 +1,7 @@
 'use strict';
 
-//
-// Sales chart
-//
-
 var SalesChart = (function() {
-
-  // Variables
-
   var $chart = $('#chart-sales-dark');
-
-
-  // Methods
-
   function init($chart) {
 
     var salesChart = new Chart($chart, {
@@ -60,14 +49,9 @@ var SalesChart = (function() {
       }
     });
 
-    // Save to jQuery object
-
     $chart.data('chart', salesChart);
 
   };
-
-
-  // Events
 
   if ($chart.length) {
     init($chart);

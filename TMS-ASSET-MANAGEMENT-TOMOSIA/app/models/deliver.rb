@@ -1,2 +1,1 @@
-class Deliver < ApplicationRecord
-end
+class Deliver < ApplicationRecord; end

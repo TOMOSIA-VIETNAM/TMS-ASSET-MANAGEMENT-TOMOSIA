@@ -1,19 +1,8 @@
-//
-// Popover
-//
-
 'use strict';
 
 var Popover = (function() {
-
-	// Variables
-
 	var $popover = $('[data-toggle="popover"]'),
 		$popoverClass = '';
-
-
-	// Methods
-
 	function init($this) {
 		if ($this.data('color')) {
 			$popoverClass = 'popover-' + $this.data('color');
@@ -26,10 +15,6 @@ var Popover = (function() {
 
 		$this.popover(options);
 	}
-
-
-	// Events
-
 	if ($popover.length) {
 		$popover.each(function() {
 			init($(this));
