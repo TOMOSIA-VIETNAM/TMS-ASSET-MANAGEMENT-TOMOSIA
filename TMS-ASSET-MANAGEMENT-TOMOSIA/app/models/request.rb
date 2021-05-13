@@ -1,2 +1,1 @@
-class Request < ApplicationRecord
-end
+class Request < ApplicationRecord; end
