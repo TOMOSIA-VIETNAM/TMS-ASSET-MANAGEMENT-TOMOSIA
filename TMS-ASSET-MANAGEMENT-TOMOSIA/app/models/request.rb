@@ -1,1 +1,4 @@
-class Request < ApplicationRecord; end
+class Request < ApplicationRecord
+  belongs_to :item
+  belongs_to :user
+end

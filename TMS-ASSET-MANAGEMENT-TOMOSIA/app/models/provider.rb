@@ -1,1 +1,3 @@
-class Provider < ApplicationRecord; end
+class Provider < ApplicationRecord
+  has_many :items
+end

@@ -1,13 +1,13 @@
 class CreateDelivers < ActiveRecord::Migration[6.1]
   def change
     create_table :delivers do |t|
-      t.string :type
+      t.string :type_deliver
       t.integer :status
       t.datetime :start_date
       t.datetime :end_date
       t.text :reason
-      t.integer :request_id
-      t.integer :item_id
+      t.references :request
+      t.references :item
 
       t.timestamps
     end
