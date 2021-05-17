@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_065555) do
+ActiveRecord::Schema.define(version: 2021_05_14_044727) do
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_065555) do
   end
 
   create_table "requests", charset: "utf8mb4", force: :cascade do |t|
-    t.string "type"
+    t.string "type_request"
     t.integer "status"
     t.datetime "start_date"
     t.datetime "end_date"
@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(version: 2021_05_12_065555) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name"
-    t.integer "role"
+    t.integer "role", default: 0, null: false
     t.string "phone_number"
-    t.bigint "project_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["project_id"], name: "index_users_on_project_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

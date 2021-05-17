@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'admin/index'
   devise_for :users
-  root to: "pages#index"
+  resources :request
+  get '/' => "request#index", :to => :request_index_path
+  resources :users
 end
