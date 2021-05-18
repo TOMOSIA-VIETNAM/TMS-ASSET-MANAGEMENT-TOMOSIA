@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  get 'admin/index'
   devise_for :users
-  root to: "pages#index"
+  resources :requests, only: [:create, :destroy]
+  # get '/' => "requests#index", :as => :user_root
+  resources :users
+  
+  namespace :manager do
+    resources :devices
+  end
+
+  namespace :employee do
+    resources :requests
+  end
 end
