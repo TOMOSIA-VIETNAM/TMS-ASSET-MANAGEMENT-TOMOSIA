@@ -241,29 +241,28 @@
 
 <div class="row">
   <div class="col-md-3"></div>
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @request, url: employee_requests_path, local: true) do |f| %>
-    
-      <%= f.label :device %>
-      <%= f.select :item_id, dataItemNotUsed.collect { |p| [ p.name, p.id ] }%>
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @request, url: employee_requests_path, local: true) do |f| %>
       
-      <div style="">
-        <%= f.label :type %>
-        <%= f.select :type_request,  ['Borrow', 'Restore', 'Break Down'], class: 'form-control' %>
-      </div>
-      
-      <%= f.label :start_date_request %>
-      <%= f.datetime_local_field :start_date, class: 'form-control' %>
+        <%= f.label :device %>
+        <%= f.select :item_id, dataItemNotUsed.collect { |p| [ p.name, p.id ] }%>
+        
+        <div style="">
+          <%= f.label :type %>
+          <%= f.select :type_request,  ['Borrow', 'Restore', 'Break Down'], class: 'form-control' %>
+        </div>
+        
+        <%= f.label :start_date_request %>
+        <%= f.datetime_local_field :start_date, class: 'form-control' %>
 
-      <%= f.label :end_date_request %>
-      <%= f.datetime_local_field :end_date, class: 'form-control' %>
+        <%= f.label :end_date_request %>
+        <%= f.datetime_local_field :end_date, class: 'form-control' %>
 
-      <%= f.label :reason %>
-      <%= f.text_area :reason, class: 'form-control' %>
+        <%= f.label :reason %>
+        <%= f.text_area :reason, class: 'form-control' %>
 
-      <%= f.submit "Submit Request", class: "btn btn-primary btn-submit" %>
-    <% end %>
-  </div>
+        <%= f.submit "Submit Request", class: "btn btn-primary btn-submit" %>
+      <% end %>
+    </div>
   <div class="col-md-3"></div>
 </div>
-
