@@ -3,19 +3,25 @@ class Employee::RequestsController < Employee::BaseController
    
   def index
   end
+  
+  def show
+    @user = User.find_by(id: current_user.id)
+    @requests = @user.requests
+  end
 
   def new
   end
 
   def create
-    @requests = current_user.requests.build(request_params)
-    if @requests.save
-      
+    @request = current_user.requests.build(request_params)
+    if @request.save
+      redirect_to root_path
+    end
   end
 
   private
 
   def request_params
-    params.require(:requests).permit(:device, :type, :start_date_request, :end_date_request, :reason)
+    params.permit(:item_id, :type_request, :start_date, :end_date, :reason, :status).with_defaults(status: "pending")
   end
 end
