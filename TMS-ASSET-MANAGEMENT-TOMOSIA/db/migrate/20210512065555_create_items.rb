@@ -7,8 +7,8 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.float :price
       t.text :tag_search
       t.text :detail
-      t.integer :category_id
-      t.integer :buyer_id
+      t.references :category
+      # t.references :user
 
       t.timestamps
     end

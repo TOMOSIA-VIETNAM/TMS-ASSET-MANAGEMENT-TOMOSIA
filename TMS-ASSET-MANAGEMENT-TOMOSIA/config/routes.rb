@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :requests, only: [:create, :destroy]
-  # get '/' => "requests#index", :as => :user_root
   resources :users
+  resources :items
   
-  namespace :manager do
-    resources :devices
-  end
+  root 'employee/requests#show'
 
   namespace :employee do
     resources :requests
