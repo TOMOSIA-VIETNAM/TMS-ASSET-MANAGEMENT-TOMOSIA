@@ -276,6 +276,11 @@
               <h3 class="mb-0">Light table</h3>
               <h3 class="mb-0">Total Requests:  <%= @user.requests.count %></h3>
             </div>
+            <div style=" text-align: center;">
+              <%flash.each do |name, msg|%>
+                <span > <%= msg %></span>
+              <% end %>
+            </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
@@ -296,10 +301,6 @@
             </div>
             <!-- Card footer -->
             <div class="card-footer py-4">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
