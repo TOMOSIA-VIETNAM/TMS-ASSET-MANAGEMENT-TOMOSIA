@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :items
   
-  root 'employee/requests#show'
+  root 'employee/requests#index'
 
   namespace :employee do
     resources :requests
