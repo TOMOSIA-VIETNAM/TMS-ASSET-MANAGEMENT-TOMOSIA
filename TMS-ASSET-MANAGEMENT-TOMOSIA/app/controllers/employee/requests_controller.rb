@@ -6,7 +6,7 @@ class Employee::RequestsController < Employee::BaseController
   
   def show
     @user = User.find_by(id: current_user.id)
-    @requests = @user.requests
+    @requests = current_user.requests.paginate(page: params[:page], :per_page => 2)
   end
 
   def new
