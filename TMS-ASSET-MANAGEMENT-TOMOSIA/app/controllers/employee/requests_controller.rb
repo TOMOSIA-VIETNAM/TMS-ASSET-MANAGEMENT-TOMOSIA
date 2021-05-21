@@ -4,18 +4,17 @@ class Employee::RequestsController < Employee::BaseController
    
   def index
     user = User.find_by(id: current_user.id)
-    @requests_list = user.requests
-
+    @requests_list = user.requests.paginate(page: params[:page], :per_page => 5)
     @requests = if params[:term]
       @requests_list.search(params[:term])
     else
       @requests = @requests_list
+
     end
   end
   
-  def show
-  end
-
+  def show;end
+  
   def new
     @request = Request.new
   end
