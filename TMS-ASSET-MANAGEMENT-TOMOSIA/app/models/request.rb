@@ -9,4 +9,6 @@ class Request < ApplicationRecord
     approve: 1,
     reject: 2
   }
+  validates :reason, :start_date, :end_date, presence: true
+
 end

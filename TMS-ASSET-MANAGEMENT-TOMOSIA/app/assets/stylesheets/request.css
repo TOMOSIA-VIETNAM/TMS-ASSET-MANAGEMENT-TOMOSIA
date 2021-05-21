@@ -1,0 +1,52 @@
+.btn-submit{
+  margin-top: 10px;
+}
+.filed_select{
+  color: black;
+  height: 43px !important;
+  width: 100% !important;
+  border: 1px solid #dee2e6;
+  background-color:white;
+}
+.filed_select:focus{
+  border: 1px solid #5e72e4;
+}
+
+.heade_create{
+  padding-top: 50px;
+  text-align: center;
+}
+.heade_create p {
+  font-size: 33px;
+  font-weight: bold;
+}
+.btn_submit{
+  text-align: center;
+}
+.text_area{
+  color: black;
+  height: auto !important;
+  width: 100% !important;
+  border: 1px solid #dee2e6;
+  background-color:white;
+}
+.lable{
+  font-weight: bold;
+}
+.item_errors{
+  margin: 0px !important;
+}
+.errors{
+  color: red;
+  list-style: none;
+}
+.card_item{
+  padding-top:0px !important ;
+}
+.success{
+  color: green;
+}
+.success_item{
+  text-align: end;
+  padding: 10px;
+}

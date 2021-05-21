@@ -361,7 +361,19 @@
             </div>
           </div>
           <div class="card-body">
+            <div style=" text-align: center;">
+                <%flash.each do |name, msg|%>
+                  <span class = 'errors'> <%= msg %></span>
+                <% end %>
+            </div>
             <%= form_for @user, url: {action: :update} do |f| %>
+              <% if @user.errors.any? %>
+                <ul class = 'item_errors'>
+                  <% @user.errors.full_messages.each do |message| %>
+                  <li class = 'errors'><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
               <h6 class="heading-small text-muted mb-4">Contact information</h6>
               
               <div class="pl-lg-4">
