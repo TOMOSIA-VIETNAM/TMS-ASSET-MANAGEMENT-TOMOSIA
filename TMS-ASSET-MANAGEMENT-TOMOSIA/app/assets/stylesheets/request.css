@@ -65,7 +65,8 @@
   .digg_pagination .current {
     font-style: normal;
     font-weight: bold;
-    background: #2e6ab1;
+    background: #5e72e4;
+    border-radius: 20px;
     color: white;
     border: 1px solid #2e6ab1; }
   .digg_pagination a {
@@ -74,7 +75,7 @@
       color: #000033;
       border-color: #000033; }
   .digg_pagination .page_info {
-    background: #2e6ab1;
+    background: #5e72e4;
     color: white;
     padding: 0.4em 0.6em;
     width: 22em;
@@ -82,7 +83,7 @@
     text-align: center; }
     .digg_pagination .page_info b {
       color: #000033;
-      background: #6aa6ed;
+      background: #5e72e4;
       padding: 0.1em 0.25em; }
   .digg_pagination:after {
     content: ".";

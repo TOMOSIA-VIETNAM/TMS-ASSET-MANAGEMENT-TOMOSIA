@@ -20,27 +20,26 @@
 
 <body>
 
-  <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-    <div class="scrollbar-inner">
-      <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
-      </div>
-    </div>
-  </nav>
-  <!-- Main content -->
   <div class="main-content" id="panel">
-    <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Navbar links -->
+          <div class="navbar-search navbar-search-light form-inline mr-sm-3 __web-inspector-hide-shortcut__" id="navbar-search-main">
+            <%= form_for( employee_requests_path, method: :get) do %>
+              <div class="form-group mb-0">
+                <div class="input-group input-group-alternative input-group-merge">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  </div>
+                   <%= text_field_tag :term,{}, :placeholder => "Search", :class =>"form-control"%>
+                </div>
+              </div>
+              <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              </button>
+            <% end %>
+          </div>
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
-              <!-- Sidenav toggler -->
               <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line"></i>
@@ -59,11 +58,9 @@
                 <i class="ni ni-bell-55"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
-                <!-- Dropdown header -->
                 <div class="px-3 py-3">
                   <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong> notifications.</h6>
                 </div>
-                <!-- View all -->
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
               </div>
             </li>
@@ -168,38 +165,39 @@
             <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">Light table</h3>
-              <h3 class="mb-0">Total Requests:  <%= @user.requests.count %></h3>
+              <h3 class="mb-0">Total Requests:  <%= @requests.count %></h3>
             </div>
-            <div style=" text-align: center;">
+            <div class = 'success_item'>
               <%flash.each do |name, msg|%>
-                <span > <%= msg %></span>
+                <span class = 'success'> <%= msg %></span>
               <% end %>
             </div>
-            <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="sort" data-sort="name">Name Device</th>
                     <th scope="col" class="sort" data-sort="budget">Price</th>
+                     <th scope="col" class="sort" data-sort="budget">Reason</th>
                     <th scope="col" class="sort" data-sort="status">Status Request</th>
                     <th scope="col">Type Request</th>
                   </tr>
                 </thead>
                 <tbody class="list">
-                 <% if @user.requests.any? %>
+                 <% if @requests.any? %>
                   <%= render @requests %>
                  <% end %>
                 </tbody>
               </table>
             </div>
-            <!-- Card footer -->
             <div class="card-footer py-4">
+              <div class="digg_pagination">
+                <%= will_paginate @requests %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
@@ -227,14 +225,12 @@
       </footer>
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
+ 
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>
 

@@ -48,5 +48,8 @@ users = User.order(:created_at).take(3)
     type_request = "muon thiet bi",
     reason = "dang mua hang",
     status = Random.rand(0..2),
-    users.each { |user| user.requests.create!(type_request: type_request,reason: reason, status: status  ) }
+    item_id = Random.rand(1..51)
+    start_day =  Time.zone.now
+    end_day =  Time.zone.now
+    users.each { |user| user.requests.create!(type_request: type_request,reason: reason, status: status, item_id: item_id, start_date: start_day, end_date: end_day) }
 end

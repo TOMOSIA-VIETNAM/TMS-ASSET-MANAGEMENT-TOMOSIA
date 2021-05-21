@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :requests, only: [:create, :destroy]
   resources :users
   resources :items
   
-  root 'employee/requests#show'
-
   namespace :employee do
     resources :requests
     resources :profiles
+  end
+
+  namespace :admin do
+    resources :requests
+    resources :employees
   end
 
 end
