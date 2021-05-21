@@ -221,29 +221,18 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>My profile</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span>Settings</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>Activity</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
-                  <span>Support</span>
-                </a>
+                  <% if user_signed_in? %>
+                    <%= link_to "Change your password", edit_user_registration_path, :class => "dropdown-item" %>
+                  <% end %>
+                  <% if user_signed_in? %>
+                    <span><%= link_to "Edit Profile", edit_employee_profile_path(current_user.id), :class => "dropdown-item" %></span>
+                  <% end %>
                 <div class="dropdown-divider"></div>
                   <% if user_signed_in? %>
                     <span><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "dropdown-item" %></span>
                   <% else %>
                     <span><%= link_to "Sign up now!",  new_user_registration_path, :class => "dropdown-item" %></span>
                   <% end %>
-                </a>
               </div>
             </li>
           </ul>

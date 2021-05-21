@@ -15,7 +15,7 @@ class Employee::RequestsController < Employee::BaseController
   def create
     @request = current_user.requests.build(request_params)
     if @request.save
-      redirect_to employee_request_path(current_user.id)
+      redirect_to root_path
     end
   end
 
