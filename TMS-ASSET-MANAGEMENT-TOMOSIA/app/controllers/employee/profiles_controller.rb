@@ -14,17 +14,19 @@ class Employee::ProfilesController < Employee::BaseController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to edit_employee_profile_path
       flash[:notice] = "This user was saved successfully"
+      redirect_to root_path
     else 
       redirect_to edit_employee_profile_path
       flash[:notice] = "This user was error"
     end
   end
+
   
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :phone_number, :address)
   end
+
 end

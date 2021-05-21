@@ -43,3 +43,10 @@
 .card_item{
   padding-top:0px !important ;
 }
+.success{
+  color: green;
+}
+.success_item{
+  text-align: end;
+  padding: 10px;
+}

@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   enumerize :role, :in => {
     user: 0,
-    manage: 1, 
+    manage: 1,
     admin: 2
   }
 

@@ -11,6 +11,4 @@ class Request < ApplicationRecord
   }
   validates :reason, :start_date, :end_date, presence: true
 
-  # validates :type_request, :reason, :start_date, :end_date, :presence => true
-
 end

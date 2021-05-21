@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   namespace :employee do
     resources :requests
     resources :profiles
-
   end
+
 end
