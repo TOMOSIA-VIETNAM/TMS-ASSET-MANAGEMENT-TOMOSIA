@@ -11,4 +11,14 @@ class Request < ApplicationRecord
   }
   validates :reason, :start_date, :end_date, presence: true
 
+  def self.search(term)
+    if term
+      where('type_request LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
+
+  scope :status_pending, -> {where status: 'pending'}
+
 end
