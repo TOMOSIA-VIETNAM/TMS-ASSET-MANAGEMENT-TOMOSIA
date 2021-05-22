@@ -11,10 +11,10 @@ class User < ApplicationRecord
   validates :name, :phone_number, presence: true
   validates :email, format: { with:  /\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: true,  presence: true
 
-  enumerize :role, :in => {
+  enumerize :role, in: {
     user: 0,
-    manage: 1,
+    manager: 1,
     admin: 2
-  }
-
+  }, predicates: true
+  
 end

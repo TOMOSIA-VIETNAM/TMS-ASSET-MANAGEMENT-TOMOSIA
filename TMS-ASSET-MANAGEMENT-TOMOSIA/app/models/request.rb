@@ -19,4 +19,6 @@ class Request < ApplicationRecord
     end
   end
 
+  scope :status_pending, -> {where status: 'pending'}
+
 end
