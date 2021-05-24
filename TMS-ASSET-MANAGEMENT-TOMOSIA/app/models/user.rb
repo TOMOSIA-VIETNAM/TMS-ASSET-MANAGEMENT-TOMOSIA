@@ -2,7 +2,6 @@ class User < ApplicationRecord
   extend Enumerize
 
   has_many :requests 
-  has_many :delivers
   has_many :projects
   
   devise :database_authenticatable, :registerable,
@@ -17,4 +16,14 @@ class User < ApplicationRecord
     admin: 2
   }, predicates: true
   
+  scope :employees, -> {where role: 'user'}
+
+  def self.search(term)
+    if term
+      where('name LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
+
 end

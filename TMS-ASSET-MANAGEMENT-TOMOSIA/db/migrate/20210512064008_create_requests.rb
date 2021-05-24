@@ -6,6 +6,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.datetime :start_date
       t.datetime :end_date
       t.text :reason
+      t.text :note
       t.references :item
       t.references :user
 

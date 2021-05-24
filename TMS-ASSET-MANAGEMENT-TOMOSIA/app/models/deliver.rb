@@ -1,6 +1,7 @@
 class Deliver < ApplicationRecord
   extend Enumerize
   belongs_to :request
+  belongs_to :item
 
   enumerize :status, in: {
     pending: 0,
@@ -17,5 +18,7 @@ class Deliver < ApplicationRecord
       all
     end
   end
+
+  scope :status_finish, -> {where status: 'finish'}
 
 end
