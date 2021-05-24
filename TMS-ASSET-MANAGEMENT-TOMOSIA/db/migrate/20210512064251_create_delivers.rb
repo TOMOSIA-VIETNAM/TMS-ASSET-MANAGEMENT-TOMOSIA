@@ -6,6 +6,7 @@ class CreateDelivers < ActiveRecord::Migration[6.1]
       t.datetime :start_date
       t.datetime :end_date
       t.text :reason
+      t.date :date_deliver
       t.references :request
       t.references :item
 
