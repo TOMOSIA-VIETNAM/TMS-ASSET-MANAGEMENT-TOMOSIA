@@ -3,6 +3,7 @@ class Request < ApplicationRecord
   
   belongs_to :user
   belongs_to :item
+  has_one :deliver
 
   enumerize :status, :in => {
     pending: 0,
