@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :approves
+    resources :requests
+    resources :employees
   end
 
   namespace :manager do
