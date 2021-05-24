@@ -2,7 +2,6 @@ class User < ApplicationRecord
   extend Enumerize
 
   has_many :requests 
-  # has_many :delivers
   has_many :projects
   
   devise :database_authenticatable, :registerable,

@@ -20,7 +20,11 @@ class ApplicationController < ActionController::Base
     if resource.user?
       employee_requests_path
     elsif resource.admin?
-      admin_requests_path
+      admin_approves_path
+    elsif resource.manager?
+      manager_delivers_path
+    else
+      new_user_session_path
     end
   end
 

@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_065555) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.text "reason"
+    t.date "date_deliver"
     t.bigint "request_id"
     t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
