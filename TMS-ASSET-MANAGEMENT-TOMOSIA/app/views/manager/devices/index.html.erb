@@ -199,6 +199,7 @@
           </div>
           <div class="card-footer py-4">
             <div class="digg_pagination">
+              <%= link_to t(".link_export"), manager_item_export_broken_path(format: :csv) %>
               <%= will_paginate @status_brokens, :param_name => 'items_broken'  %>
             </div>
           </div>
@@ -240,7 +241,8 @@
           </div>
           <div class="card-footer py-4">
             <div class="digg_pagination">
-              <%= will_paginate @status_stock, :param_name => 'items_out_stock'  %>
+              <%= link_to t(".link_export"), manager_item_export_stock_path(format: :csv) %>
+              <%= will_paginate @status_stock, :param_name => 'items_stock'  %>
             </div>
           </div>
         </div>

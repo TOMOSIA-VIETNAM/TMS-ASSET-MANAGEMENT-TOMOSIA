@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   serialize :detail, JSON
 
   DETAIL_ATTRIBUTES = %i(CPU RAM Screen	Graphics HardDrive Dimensions year)
-  CSV_ATTRIBUTES = %w(name status price detail).freeze
+  CSV_ATTRIBUTES = %w(name status comment price detail).freeze
 
   validates :name, :status, :price, :detail, presence: true
 
