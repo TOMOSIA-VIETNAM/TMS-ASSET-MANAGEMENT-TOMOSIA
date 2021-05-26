@@ -1,7 +1,7 @@
-class Manager::DeliverPolicy < ApplicationPolicy
+class Manager::ItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.role == "manager" || user.role == "admin"
+      if user.manager? || user.admin?
         scope.all
       end
     end
@@ -32,8 +32,8 @@ class Manager::DeliverPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if user.manager? || user.admin?
-      [:status, :reason, :date_deliver]
+    if user.manager?
+      [:name, :status, :comment, :price, :detail]
     end
   end
 end

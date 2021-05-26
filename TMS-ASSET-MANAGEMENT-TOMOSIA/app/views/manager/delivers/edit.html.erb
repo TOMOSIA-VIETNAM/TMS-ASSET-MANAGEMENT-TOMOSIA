@@ -149,20 +149,19 @@
               <% end %>
           <div class="card-body px-lg-5 py-lg-5 card_item">
             <%= form_for @deliver, url: {action: :update} do |f| %>
-              <div class="form-group">
               
               <div class="form-group">
                 <%= f.label :status, :class => "lable"%><br />
                 <%= f.select :status,  ['pending', 'handling', 'finish'], {}, { :class => 'filed_select' } %>
               </div>
-                <div class="form-group">
-                  <%= f.label :reason, :class => "lable"%>
-                  <%= f.text_area :reason, :class => "text_area" %>
+              <div class="form-group">
+                <%= f.label :reason, :class => "lable"%>
+                <%= f.text_area :reason, :class => "text_area" %>
               </div>
-                <div class="form-group btn_submit">
-                  <%= link_to "Back", manager_delivers_path, :class => "btn btn-primary btn-submit" %>
-                  <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
-                </div>
+              <div class="form-group btn_submit">
+                <%= link_to "Back", manager_delivers_path, :class => "btn btn-primary btn-submit" %>
+                <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
+              </div>
             <%end%>
           </div>
         </div>

@@ -12,19 +12,17 @@ class Manager::DeliversController < Manager::BaseController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit 
-  end 
+  def edit ;end 
 
   def update
     case deliver_params[:status]
 
     when 'finish'
       if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
-      redirect_to manager_delivers_path
-      flash[:notice] = 'This user was saved successfully'
+        redirect_to manager_delivers_path
+        flash[:notice] = 'This user was saved successfully'
       else
         render :edit
       end
@@ -32,16 +30,16 @@ class Manager::DeliversController < Manager::BaseController
       if @deliver.update(deliver_params)
         redirect_to manager_delivers_path
         flash[:notice] = 'This user was saved successfully' 
-        else
-          render :edit
-        end
+      else
+        render :edit
+      end
     when 'handling'
       if @deliver.update(deliver_params)
         redirect_to manager_delivers_path
         flash[:notice] = 'This user was saved successfully' 
-        else
-          render :edit
-        end
+      else
+        render :edit
+      end
     else
       render :edit
     end
