@@ -4,9 +4,12 @@ Rails.application.routes.draw do
       get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
       patch 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
+
+  match '/admin/items/export_stock' => 'admin/items#export_csv_stock', :as => 'admin_item_export_stock', :via => :get
+  match '/admin/items/export_broken' => 'admin/items#export_csv_broken', :as => 'admin_item_export_broken', :via => :get
+
   resources :users
   resources :items
-  # root :to => 'devise/sessions#new'
   devise_scope :user do
     root to: "devise/sessions#new"
   end
@@ -24,7 +27,8 @@ Rails.application.routes.draw do
   end
 
   namespace :manager do
-    resources :devices
+    resources :items
     resources :delivers
+    resources :devices
   end
 end
