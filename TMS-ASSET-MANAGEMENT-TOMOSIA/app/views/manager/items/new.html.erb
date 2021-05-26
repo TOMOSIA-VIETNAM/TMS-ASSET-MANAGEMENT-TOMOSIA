@@ -44,20 +44,6 @@
   <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-search navbar-search-light form-inline mr-sm-3 __web-inspector-hide-shortcut__" id="navbar-search-main">
-          <%= form_for( manager_delivers_path, method: :get) do %>
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                  <%= text_field_tag :term,{}, :placeholder => "Search", :class =>"form-control"%>
-              </div>
-            </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-            </button>
-          <% end %>
-        </div>
         <ul class="navbar-nav align-items-center  ml-md-auto ">
           <li class="nav-item d-xl-none">
             <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
@@ -143,80 +129,104 @@
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-                <% if user_signed_in? %>
-                  <%= link_to "Change your password", edit_user_registration_path, :class => "dropdown-item" %>
-                <% end %>
-                <% if user_signed_in? %>
-                  <span><%= link_to "Edit Profile", edit_employee_profile_path(current_user.id), :class => "dropdown-item" %></span>
-                <% end %>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-single-02"></i>
+                <span>My profile</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-settings-gear-65"></i>
+                <span>Settings</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-calendar-grid-58"></i>
+                <span>Activity</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-support-16"></i>
+                <span>Support</span>
+              </a>
               <div class="dropdown-divider"></div>
                 <% if user_signed_in? %>
                   <span><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "dropdown-item" %></span>
                 <% else %>
                   <span><%= link_to "Sign up now!",  new_user_registration_path, :class => "dropdown-item" %></span>
                 <% end %>
+              </a>
             </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Header -->
-  <!-- Header -->
+
   <div class="header bg-primary pb-6">
     <div class="container-fluid">
       <div class="header-body">
         <div class="row align-items-center py-4">
           <div class="col-lg-6 col-7">
-            <h2 class="h2 text-white d-inline-block mb-0">Tables List Delivers</h2>
           </div>
           <div class="col-lg-6 col-5 text-right">
+            
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Page content -->
   <div class="container-fluid mt--6">
     <div class="row">
       <div class="col">
         <div class="card">
-          <!-- Card header -->
-          <div class="card-header border-0">
-            <h3 class="mb-0">Total Delivers:  <%= @delivers.count %></h3>
+          <div class="heade_create">
+            <p>Create item</p>
           </div>
-          <div class = 'success_item'>
-            <%flash.each do |name, msg|%>
-              <span class = 'success'> <%= msg %></span>
-            <% end %>
-          </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col" class="sort" data-sort="name">Name User</th>
-                  <th scope="col" class="sort" data-sort="name">Name Request</th>
-                  <th scope="col" class="sort" data-sort="budget">Start Date</th>
-                  <th scope="col" class="sort" data-sort="budget">End_Date</th>
-                  <th scope="col" class="sort" data-sort="status">Rason</th>
-                  <th scope="col">Status</th>
-                  <th scope="col" class="sort" data-sort="status">Date Delivery</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody class="list">
-                <% if @delivers.any? %>
-                <%= render @delivers %>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <div class="card-footer py-4">
-              <div class="digg_pagination">
-                <%= will_paginate @delivers %>
+          <% if @item.errors.any? %>
+            <ul class = 'item_errors'>
+              <% @item.errors.full_messages.each do |message| %>
+                <li class = 'errors'><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <div class="card-body px-lg-5 py-lg-5 card_item">
+            <%= form_with(model: @item, url: manager_items_path, local: true) do |f| %>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <%= f.label :name, :class => "lable"%><br />
+                    <%= f.text_field :name, :class => "filed_select" %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :status, :class => "lable"%><br />
+                    <%= f.select :status,  ['broken'], {}, { :class => 'filed_select' } %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :price, :class => "lable"%><br />
+                    <%= f.text_field :price, :class => "filed_select" %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :comment, :class => "lable"%><br />
+                    <%= f.text_field :comment, :class => "filed_select" %>
+                  </div>
+
+                </div>
+                <div class="col-lg-6">
+                  <%= f.fields :detail, model: f.object.detail do |ff| %>
+                    <% Item::DETAIL_ATTRIBUTES.each do |attribute|%>
+                      <div class="form-group">
+                        <%= ff.label attribute, :class => "lable"%><br />
+                        <%= ff.text_field attribute, :class =>  "filed_select" %>
+                      </div> 
+                    <%end%>
+                  <%end%>
+                </div>
               </div>
-            </div>
+              <div class="form-group btn_submit">
+                <%= link_to "Back", manager_items_path, :class => "btn btn-primary btn-submit" %>
+                <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
+              </div>
+            <%end%>
           </div>
         </div>
       </div>
@@ -248,3 +258,12 @@
     </footer>
   </div>
 </div>
+
+<script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="../assets/js/argon.js?v=1.2.0"></script>
+

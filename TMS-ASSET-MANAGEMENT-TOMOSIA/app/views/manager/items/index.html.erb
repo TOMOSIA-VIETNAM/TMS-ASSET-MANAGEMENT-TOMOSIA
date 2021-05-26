@@ -45,7 +45,7 @@
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-search navbar-search-light form-inline mr-sm-3 __web-inspector-hide-shortcut__" id="navbar-search-main">
-          <%= form_for( manager_delivers_path, method: :get) do %>
+          <%= form_for( manager_items_path, method: :get) do %>
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
@@ -161,29 +161,26 @@
       </div>
     </div>
   </nav>
-  <!-- Header -->
-  <!-- Header -->
   <div class="header bg-primary pb-6">
     <div class="container-fluid">
       <div class="header-body">
         <div class="row align-items-center py-4">
           <div class="col-lg-6 col-7">
-            <h2 class="h2 text-white d-inline-block mb-0">Tables List Delivers</h2>
+            <h2 class="h2 text-white d-inline-block mb-0">Tables List Items</h2>
           </div>
           <div class="col-lg-6 col-5 text-right">
+            <%= link_to 'new devices', new_manager_item_path,  :class => "btn btn-sm btn-neutral"%>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Page content -->
   <div class="container-fluid mt--6">
     <div class="row">
       <div class="col">
         <div class="card">
-          <!-- Card header -->
           <div class="card-header border-0">
-            <h3 class="mb-0">Total Delivers:  <%= @delivers.count %></h3>
+            <h3 class="mb-0">Total items:  <%= @items.count %></h3>
           </div>
           <div class = 'success_item'>
             <%flash.each do |name, msg|%>
@@ -194,28 +191,24 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">Name User</th>
-                  <th scope="col" class="sort" data-sort="name">Name Request</th>
-                  <th scope="col" class="sort" data-sort="budget">Start Date</th>
-                  <th scope="col" class="sort" data-sort="budget">End_Date</th>
-                  <th scope="col" class="sort" data-sort="status">Rason</th>
-                  <th scope="col">Status</th>
-                  <th scope="col" class="sort" data-sort="status">Date Delivery</th>
+                  <th scope="col" class="sort" data-sort="name">Name</th>
+                  <th scope="col" class="sort" data-sort="name">Comment</th>
+                  <th scope="col" class="sort" data-sort="budget">Price</th>
+                  <th scope="col" class="sort" data-sort="budget">Status</th>
+                  <th scope="col" class="sort" data-sort="budget">Detail</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody class="list">
-                <% if @delivers.any? %>
-                <%= render @delivers %>
+                <% if @items.any? %>
+                  <%= render partial: "item", collection: @items %>
                 <% end %>
               </tbody>
             </table>
           </div>
           <div class="card-footer py-4">
-            <div class="card-footer py-4">
-              <div class="digg_pagination">
-                <%= will_paginate @delivers %>
-              </div>
+            <div class="digg_pagination">
+              <%= will_paginate @items %>
             </div>
           </div>
         </div>
