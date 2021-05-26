@@ -19,3 +19,14 @@ en:
       mit_license: 'MIT License'
     about:
       title: 'About us'
+  manager:
+    devices:
+    index:
+      link_export: Export Users
+      title: Export CSV
+  header_csv:
+    name: Name
+    status: status
+    price: price
+    comment: Comment
+    detail: Detail

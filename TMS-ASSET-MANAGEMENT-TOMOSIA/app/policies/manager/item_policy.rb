@@ -40,4 +40,10 @@ class Manager::ItemPolicy < ApplicationPolicy
       [:name, :status, :comment, :price, detail: Item::DETAIL_ATTRIBUTES]
     end
   end
+  
+  def export_csv
+    if user.manager?
+      [Item::CSV_ATTRIBUTES]
+    end
+  end
 end
