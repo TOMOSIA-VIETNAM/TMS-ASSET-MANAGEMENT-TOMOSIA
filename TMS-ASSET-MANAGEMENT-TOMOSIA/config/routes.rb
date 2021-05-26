@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :items
-  # root :to => 'devise/sessions#new'
   devise_scope :user do
     root to: "devise/sessions#new"
   end
@@ -24,7 +23,8 @@ Rails.application.routes.draw do
   end
 
   namespace :manager do
-    resources :devices
+    resources :items
     resources :delivers
+    resources :devices
   end
 end

@@ -1,16 +1,12 @@
-<!-- Sidenav -->
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
   <div class="scrollbar-inner">
-    <!-- Brand -->
     <div class="sidenav-header  align-items-center">
       <a class="navbar-brand" href="javascript:void(0)">
         <img src="../assets/img/logo.png" class="navbar-brand-img" alt="...">
       </a>
     </div>
     <div class="navbar-inner">
-      <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-        <!-- Nav items -->
         <ul class="navbar-nav">
           <li class="nav-item">
             <%= link_to 'Dashboard', admin_dashboards_path, :class => "nav-link"%>
@@ -32,13 +28,10 @@
     </div>
   </div>
 </nav>
-  <!-- Main content -->
   <div class="main-content" id="panel">
-    <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
           <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
@@ -52,7 +45,6 @@
               <span aria-hidden="true">×</span>
             </button>
           </form>
-          <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
           </ul>
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
@@ -86,8 +78,6 @@
         </div>
       </div>
     </nav>
-    <!-- Header -->
-    <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
@@ -101,13 +91,11 @@
               <a href="#" class="btn btn-sm btn-neutral">New</a>
             </div>
           </div>
-          <!-- Card stats -->
           <div class="row">
           </div>
         </div>
       </div>
     </div>
-    <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-8">
@@ -125,9 +113,7 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
-                <!-- Chart wrapper -->
                 <%= column_chart ({"Items Broken" => @items_broken.count, "Items Stock" => @items_stock.count, "Items Out Stock" => @items_out_stock.count}), dataset: {width: "10%"}%>
               </div>
             </div>
@@ -144,7 +130,6 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
                 <%= pie_chart ({"Items Broken" => @items_broken.count, "Items Stock" => @items_stock.count, "Items Out Stock" => @items_out_stock.count})%>
               </div>
@@ -154,15 +139,11 @@
       </div>
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
   <script src="../assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="../assets/vendor/chart.js/dist/Chart.extension.js"></script>
-  <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>

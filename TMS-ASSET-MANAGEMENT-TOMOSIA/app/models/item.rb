@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   extend Enumerize
-
   has_one :request
+  serialize :detail, JSON
+
+  DETAIL_ATTRIBUTES = %i(CPU RAM Screen	Graphics HardDrive Dimensions year)
+
+  validates :name, :status, :price, :detail, presence: true
 
   enumerize :status, in: {
     stock: 0,
