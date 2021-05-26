@@ -1,7 +1,7 @@
 class Manager::DeliverPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.role == "manager" || user.role == "admin"
+      if user.role == "manager" || user.admin?
         scope.all
       end
     end

@@ -2,10 +2,10 @@ class ApplicationController < ActionController::Base
   include Pundit
   
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # after_action :verify_authorized
-  # after_action :verify_policy_scoped
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :exception
+
+  
   
 
   protected
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if resource.user?
       employee_requests_path
     elsif resource.admin?
-      admin_approves_path
+      admin_requests_path
     elsif resource.manager?
       manager_delivers_path
     else

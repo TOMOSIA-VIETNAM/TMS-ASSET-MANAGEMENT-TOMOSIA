@@ -13,14 +13,16 @@ class Item < ApplicationRecord
     out_stock: 2,
   }, predicates: true
 
-  scope :status_stock, -> {where status: 'stock'}
-  scope :status_broken, -> {where status: 'broken'}
+  scope :items_broken, -> {where status: 'broken'}
+  scope :items_stock, -> {where status: 'stock'}
+  scope :items_out_stock, -> {where status: 'out_stock'}
 
   def self.search(option)
-    if option[:search_stock]
-      where('name LIKE ?', "%#{option[:search_stock]}%")
-    elsif option[:search_broken]
-      where('name LIKE ?', "%#{option[:search_broken]}%")
+    case option
+    when option
+      where('name LIKE ?', "%#{option}%")
+    when option
+      where('name LIKE ?', "%#{option}%")
     else
       all
     end

@@ -17,4 +17,13 @@ class User < ApplicationRecord
   }, predicates: true
   
   scope :employees, -> {where role: 'user'}
+
+  def self.search(term)
+    if term
+      where('name LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
+
 end
