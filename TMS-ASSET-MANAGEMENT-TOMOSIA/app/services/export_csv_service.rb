@@ -1,6 +1,6 @@
 require "csv"
-
 class ExportCsvService
+  
   def initialize objects, attributes
     @attributes = attributes
     @objects = objects

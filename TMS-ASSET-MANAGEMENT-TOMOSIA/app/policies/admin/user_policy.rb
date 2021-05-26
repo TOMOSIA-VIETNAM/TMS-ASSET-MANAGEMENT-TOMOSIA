@@ -1,7 +1,7 @@
 class Admin::UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.role == "admin"
+      if user.admin?
         scope.all
       else
         scope.where(id: 1)
@@ -14,7 +14,6 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def index?
-    binding.pry
     user.admin? 
   end
 

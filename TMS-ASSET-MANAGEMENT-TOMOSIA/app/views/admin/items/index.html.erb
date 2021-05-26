@@ -33,18 +33,6 @@
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-search navbar-search-light form-inline mr-sm-3 __web-inspector-hide-shortcut__" id="navbar-search-main">
-          <%= form_for(admin_requests_path, method: :get) do %>
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                  <%= text_field_tag :term,{}, :placeholder => "Search", :class =>"form-control"%>
-              </div>
-            </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-            </button>
-          <% end %>
         </div>
         <ul class="navbar-nav align-items-center  ml-md-auto ">
           <li class="nav-item d-xl-none">
@@ -154,6 +142,7 @@
       <div class="header-body">
         <div class="row align-items-center py-4">
           <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">List Devices Broken/ Stock</h6>
           </div>
           <div class="col-lg-6 col-5 text-right">
           </div>
@@ -166,7 +155,10 @@
       <div class="col">
         <div class="card">
           <div class="card-header border-0">
-            <h3 class="mb-0">Total User:  <%= @employees.count %></h3>
+            <h3 class="mb-0">Total Devices Broken:  <%= @items_broken.count %></h3>
+          </div>
+          <div class="col-lg-3 col-3 text-right">
+            <%= render partial: 'search_broken'%>
           </div>
           <div class = 'success_item'>
             <%flash.each do |name, msg|%>
@@ -177,29 +169,65 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">Name Employee</th>
-                  <th scope="col" class="sort" data-sort="name">Email</th>
-                  <th scope="col" class="sort" data-sort="budget">Phone Number</th>
-                  <th scope="col" class="sort" data-sort="budget">Address</th>
-                  <th scope="col" class="sort" data-sort="budget">Detail</th>
+                  <th scope="col" class="sort" data-sort="name">Name Device</th>
+                  <th scope="col" class="sort" data-sort="name">Commnet</th>
+                  <th scope="col" class="sort" data-sort="budget">Price</th>
                 </tr>
               </thead>
               <tbody class="list">
-                <% if @employees.any? %>
-                <%= render partial: 'employee', collection: @employees %>
+                <% if @items_broken.any? %>
+                  <%= render partial: 'item_broken', collection: @items_broken %>
                 <% end %>
               </tbody>
             </table>
           </div>
           <div class="card-footer py-4">
             <div class="digg_pagination">
-              <%= will_paginate @employees %>
+              <%= link_to t(".link_export"), admin_item_export_broken_path(format: :csv) %>
+              <%= will_paginate @items_broken, :param_name => 'items_broken' %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="container-fluid mt--6 drak-table">
+    <div class="row">
+      <div class="col">
+        <div class="card bg-default shadow">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="text-white mb-0">Total Devices Stock:  <%= @items_stock.count %></h3>
+          </div>
+          <div class="col-lg-3 col-3 text-right-dark">
+            <%= render partial: 'search_stock'%>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark table-flush">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Name Device</th>
+                  <th scope="col" class="sort" data-sort="name">Commnet</th>
+                  <th scope="col" class="sort" data-sort="budget">Price</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <% if @items_stock.any? %>
+                <%= render partial: 'item_stock', collection: @items_stock %>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <div class="digg_pagination">
+              <%= link_to t(".link_export"), admin_item_export_stock_path(format: :csv) %>
+              <%= will_paginate @items_stock, :param_name => 'items_stock' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>

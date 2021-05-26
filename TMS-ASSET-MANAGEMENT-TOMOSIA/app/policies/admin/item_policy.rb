@@ -1,4 +1,4 @@
-class Admin::DeliverPolicy < ApplicationPolicy
+class Admin::ItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
