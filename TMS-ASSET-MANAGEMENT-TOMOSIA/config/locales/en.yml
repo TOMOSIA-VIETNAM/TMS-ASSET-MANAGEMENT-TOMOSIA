@@ -19,3 +19,8 @@ en:
       mit_license: 'MIT License'
     about:
       title: 'About us'
+  header_csv: 
+    name: 'Name Device'
+    status: 'Status Device'
+    price: 'Price'
+
