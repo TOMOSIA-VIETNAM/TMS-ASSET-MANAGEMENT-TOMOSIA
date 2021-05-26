@@ -114,7 +114,7 @@
             </div>
             <div class="card-body">
               <div class="chart">
-                <%= column_chart ({"Items Broken" => @items_broken.count, "Items Stock" => @items_stock.count, "Items Out Stock" => @items_out_stock.count}), id: "myChart"%>
+                <%= column_chart ({"Items Broken" => @items_broken.count, "Items Stock" => @items_stock.count, "Items Out Stock" => @items_out_stock.count}), dataset: {width: "10%"}%>
               </div>
             </div>
           </div>
