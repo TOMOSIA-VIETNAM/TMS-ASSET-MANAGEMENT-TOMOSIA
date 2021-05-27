@@ -176,16 +176,18 @@
             <% end %>
             <div class="card-body px-lg-5 py-lg-5 card_item">
               <%= form_with(model: @request, url: employee_requests_path, local: true) do |f| %>
-              
+
+                <div class="form-group">
+                  <%= f.label :type_request, :class => "lable"%><br />
+                  <%= f.select :type_request,  ['Borrow', 'Restore', 'Break'], {}, { :class => 'filed_select' } %>
+                </div>
+                
                 <div class="form-group">
                   <%= f.label :device, :class => "lable" %>
                   <%= f.select :item_id, dataItemNotUsed.collect { |p| [ p.name, p.id ] }, {}, { :class => 'filed_select' } %>
                 </div>
+
                 <div class="form-group">
-                  <%= f.label :type_request, :class => "lable"%><br />
-                  <%= f.select :type_request,  ['Borrow', 'Restore', 'Break Down'], {}, { :class => 'filed_select' } %>
-                </div>
-                  <div class="form-group">
                   <%= f.label :start_date_request, :class => "lable"%><br />
                   <%= f.date_field :start_date, :class => "filed_select" %>
                 </div>

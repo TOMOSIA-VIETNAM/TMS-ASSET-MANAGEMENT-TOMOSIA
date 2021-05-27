@@ -15,7 +15,7 @@ class Admin::RequestsController < Admin::BaseController
   end
 
   def create
-
+    
     @request = Request.find(params[:approve][:request_id])
     authorize @request
 
@@ -23,6 +23,11 @@ class Admin::RequestsController < Admin::BaseController
     authorize @deliver
 
     if @deliver.save
+      notifier = Slack::Notifier.new Request::WEBHOOK_URL
+      notifier.post text:"User Name: #{current_user.name}
+                          Type Request: #{@request.type_request}
+                          Devices: #{@request.item.name}
+                          Reason: #{@request.reason}"
       flash[:notice] = 'Deliver was saved.'
       redirect_to admin_requests_path
     else
