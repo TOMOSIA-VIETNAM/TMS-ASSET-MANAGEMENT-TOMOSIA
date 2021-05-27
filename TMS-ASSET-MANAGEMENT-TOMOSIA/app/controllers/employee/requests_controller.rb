@@ -23,6 +23,9 @@ class Employee::RequestsController < Employee::BaseController
     @request = current_user.requests.build(request_params)
 
     if @request.save
+      notifier = Slack::Notifier.new Request::WEBHOOK_URL
+      notifier.post text:"User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n  Devices: #{@request.item.name}\n Reason: #{@request.reason} "
+
       flash[:notice] = 'This user was saved successfully'
       redirect_to employee_requests_path 
     else 
