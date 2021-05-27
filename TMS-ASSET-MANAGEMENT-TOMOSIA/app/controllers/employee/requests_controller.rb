@@ -23,11 +23,32 @@ class Employee::RequestsController < Employee::BaseController
     @request = current_user.requests.build(request_params)
 
     if @request.save
+      notifier = Slack::Notifier.new Request::WEBHOOK_URL
+      notifier.post text:"User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n  Devices: #{@request.item.name}\n Reason: #{@request.reason} "
+
       flash[:notice] = 'This user was saved successfully'
       redirect_to employee_requests_path 
     else 
       render :new
     end
+  end
+
+  def change_select
+    
+    if params[:type_request] == 'Break' || params[:type_request] == 'Restore'
+      @items = current_user.items.where(status: 'out_stock')
+
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      @items = Item.items_stock
+      
+      respond_to do |format|
+        format.js {}
+      end
+    end
+
   end
 
   private
