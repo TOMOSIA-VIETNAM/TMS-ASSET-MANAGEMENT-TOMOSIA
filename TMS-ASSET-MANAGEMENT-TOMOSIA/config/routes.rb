@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   match '/manager/devices/export_stock' => 'manager/devices#export_csv_stock', :as => 'manager_item_export_stock', :via => :get
   match '/manager/devices/export_broken' => 'manager/devices#export_csv_broken', :as => 'manager_item_export_broken', :via => :get
 
+  match '/employee/requests/change_select' => 'employee/requests#change_select', :as => 'employee_request_change_select', :via => :get
+
   namespace :employee do
     resources :requests
     resources :profiles

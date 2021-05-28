@@ -33,6 +33,22 @@ class Employee::RequestsController < Employee::BaseController
     end
   end
 
+  def change_select
+    
+    if params[:type_request] == 'Break' || params[:type_request] == 'Restore'
+      @items = current_user.items
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      @items = Item.items_stock
+      respond_to do |format|
+        format.js {}
+      end
+    end
+
+  end
+
   private
 
   def default_request
