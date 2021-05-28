@@ -21,6 +21,7 @@ class Manager::DeliversController < Manager::BaseController
 
     when 'finish'
       if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
+        @deliver.item.update status: "usesing"
         redirect_to manager_delivers_path
         flash[:notice] = 'This user was saved successfully'
       else

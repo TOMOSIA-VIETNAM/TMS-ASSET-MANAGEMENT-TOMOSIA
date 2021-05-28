@@ -1,0 +1,3 @@
+
+$('#request_item_id').append('<%= label_tag :region_selection, "State/Region" %><%= select_tag :region_selection, options_from_collection_for_select(@items, :id, :name), :prompt => "State/Region" %>');
+

@@ -176,15 +176,16 @@
             <% end %>
             <div class="card-body px-lg-5 py-lg-5 card_item">
               <%= form_with(model: @request, url: employee_requests_path, local: true) do |f| %>
-              
-                <div class="form-group">
-                  <%= f.label :device, :class => "lable" %>
-                  <%= f.select :item_id, dataItemNotUsed.collect { |p| [ p.name, p.id ] }, {}, { :class => 'filed_select' } %>
-                </div>
-                <div class="form-group">
+
+               <div class="form-group">
                   <%= f.label :type_request, :class => "lable"%><br />
-                  <%= f.select :type_request,  ['Borrow', 'Restore', 'Break Down'], {}, { :class => 'filed_select' } %>
+                  <%= f.select :type_request, ['Borrow', 'Restore', 'Break'], {}, { :class => 'filed_select' }%>
                 </div>
+
+                <div class="form-group" id='request_item_id'>
+
+                </div>
+
                   <div class="form-group">
                   <%= f.label :start_date_request, :class => "lable"%><br />
                   <%= f.date_field :start_date, :class => "filed_select" %>
@@ -198,19 +199,16 @@
                     <%= f.text_area :reason, :class => "text_area" %>
                 </div>
                   <div class="form-group btn_submit">
-                    <%= link_to "Back", employee_requests_path, :class => "btn btn-primary btn-submit" %>
+                    <%= link_to "Back", employee_requests_path, class: "btn btn-primary btn-submit" %>
                     <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
                   </div>
               <%end%>
-              
             </div>
-            <!-- Card footer -->
             <div class="card-footer py-4">
             </div>
           </div>
         </div>
       </div>
-      <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
@@ -238,14 +236,11 @@
       </footer>
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>
 

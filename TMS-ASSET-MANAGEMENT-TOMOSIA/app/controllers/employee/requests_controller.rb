@@ -1,6 +1,6 @@
 class Employee::RequestsController < Employee::BaseController
   before_action :authenticate_user!
-  before_action :default_request, only: [:show]
+  before_action :default_request, only: [:show, :change_select]
    
   def index
     user = User.find_by(id: current_user.id)
@@ -30,6 +30,23 @@ class Employee::RequestsController < Employee::BaseController
       redirect_to employee_requests_path 
     else 
       render :new
+    end
+  end
+
+  def change_select
+
+    if  params[:name] == 'Restore' || params[:name] == 'Break'
+      @items = current_user.items
+      # respond_to do |format|
+      #   format.js {render partial: 'filename' }
+      #   format.json { render :json => @items.to_json }
+      # end
+    else
+      @items = Item.items_broken
+      # respond_to do |format|
+      #   format.js
+      #   format.json { render :json => @items.to_json }
+      # end 
     end
   end
 

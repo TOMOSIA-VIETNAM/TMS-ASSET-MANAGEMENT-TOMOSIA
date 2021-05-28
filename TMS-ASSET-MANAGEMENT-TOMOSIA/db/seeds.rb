@@ -20,12 +20,11 @@ User.create!(name: "name user",
   end
 
   Item.create!(name: "name user",
-    status: 1, comment: "hang chat luong", price: 900, tag_search: ["key"=> "value"], detail: "thoong tin sp ", category_id: 1, created_at: Time.zone.now, updated_at: Time.zone.now)
+    status: 1, comment: "hang chat luong", price: 900, detail: "thoong tin sp ", category_id: 1, created_at: Time.zone.now, updated_at: Time.zone.now)
   50.times do |n|
     name = Faker::Name.name
     status = Random.rand(0..2)
     price = 900
-    tag_search = ["key#{n+2}"=> "value#{n+2}"]
     detail = "thong tin sp"
     category_id = Random.rand(1..10)
     # buyer_id = 2
@@ -33,7 +32,6 @@ User.create!(name: "name user",
       name: name,
       status: status,
       price: price,
-      tag_search: tag_search,
       detail: detail,
       category_id: category_id,
     #   buyer_id: buyer_id,
