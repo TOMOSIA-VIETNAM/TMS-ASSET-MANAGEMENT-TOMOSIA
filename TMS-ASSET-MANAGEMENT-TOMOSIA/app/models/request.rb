@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   extend Enumerize
-  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
   
   belongs_to :user
   belongs_to :item
@@ -31,5 +31,6 @@ class Request < ApplicationRecord
 
   scope :status_pending, -> {where status: 'pending'}
   scope :status_approve, -> {where status: 'approve'}
+  scope :status_reject, -> {where status: 'reject'}
 
 end

@@ -17,6 +17,6 @@
     <%= request_approved.deliver.status %>
   </td>
 </tr>
-<%if request_approved.deliver.status.finish?%>
+<%if request_approved.deliver.item.status.out_stock?%>
   <%@count = @count + 1 %>
 <%end%>

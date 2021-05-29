@@ -69,7 +69,7 @@ class Employee::RequestsController < Employee::BaseController
       end
     else
       @items = Item.items_stock
-
+      
       respond_to do |format|
         format.js {}
       end

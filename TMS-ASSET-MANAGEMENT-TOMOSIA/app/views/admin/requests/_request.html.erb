@@ -30,6 +30,11 @@
       <span class="completion mr-2"><%= request.type_request %></span>
     </div>
   </td>
+  <td>
+    <div class="d-flex align-items-center">
+      <span class="completion mr-2"><%= request.note %></span>
+    </div>
+  </td>
   <td class="budget">
     <%= link_to 'Approve',admin_requests_path(:approve => { :type_deliver => request.type_request, 
                                                             :start_date => request.start_date,
