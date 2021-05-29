@@ -34,7 +34,7 @@
     <div class="d-flex align-items-center">
       <span class="completion mr-2"><%= request.note %></span>
     </div>
-  </td>
+  </td> 
   <td class="budget">
     <%= link_to 'Approve',admin_requests_path(:approve => { :type_deliver => request.type_request, 
                                                             :start_date => request.start_date,
@@ -42,7 +42,7 @@
                                                             :reason => request.reason,
                                                             :request_id => request.id,
                                                             :item_id => request.item.id
-                                                          }), method: :post, data: { confirm: 'You sure?' },  :class => "btn btn-primary btn-submit"%>
-    <%= link_to 'Reject', edit_admin_request_path(request.id),  :class => "btn btn-primary btn-submit"%>
+                                                          }), method: :post, data: { confirm: 'You sure?' },  :class => "btn btn-primary"%>
+    <%= link_to 'Reject', edit_admin_request_path(request.id),  :class => "btn btn-info btn-primary"%>
   </td>
 </tr>
