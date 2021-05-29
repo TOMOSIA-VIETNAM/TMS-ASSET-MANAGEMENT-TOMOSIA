@@ -50,6 +50,13 @@
   text-align: end;
   padding: 10px;
 }
+.error_item{
+  text-align: start;
+}
+.error{
+  margin-left: 50px;
+  color: red;
+}
 
 .digg_pagination {
   background: white;

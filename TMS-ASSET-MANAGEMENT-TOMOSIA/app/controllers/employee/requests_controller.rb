@@ -1,6 +1,6 @@
 class Employee::RequestsController < Employee::BaseController
   before_action :authenticate_user!
-  before_action :default_request, only: [:show]
+  before_action :default_request, only: [:show, :change_select]
    
   def index
     user = User.find_by(id: current_user.id)
@@ -21,7 +21,19 @@ class Employee::RequestsController < Employee::BaseController
 
   def create
     @request = current_user.requests.build(request_params)
+    @item_request = Item.find_by(id: request_params[:item_id])
+    
+    if @item_request.request.nil?
+      request_set
+    elsif @item_request.request.status != 'pending'
+      check_deliver
+    else
+      flash[:error] = 'Request for this item is pending'
+      render :new
+    end
+  end
 
+  def request_set
     if @request.save
       notifier = Slack::Notifier.new Request::WEBHOOK_URL
       notifier.post text:"User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n  Devices: #{@request.item.name}\n Reason: #{@request.reason} "
@@ -33,10 +45,24 @@ class Employee::RequestsController < Employee::BaseController
     end
   end
 
+  def check_deliver
+    if !@item_request.request.deliver.nil?
+      if @item_request.request.deliver.status == 'finish' && @item_request.status == 'out_stock'
+
+        request_set
+      else
+        flash[:error] = 'Request for this item process '
+        render :new
+      end
+    else
+      flash[:error] = 'Request for this item process '
+      render :new
+    end
+  end
+
   def change_select
-    
     if params[:type_request] == 'Break' || params[:type_request] == 'Restore'
-      @items = current_user.items.where(status: 'out_stock')
+      @items = current_user.items.where(status: 'out_stock').uniq
 
       respond_to do |format|
         format.js {}
@@ -48,7 +74,6 @@ class Employee::RequestsController < Employee::BaseController
         format.js {}
       end
     end
-
   end
 
   private
