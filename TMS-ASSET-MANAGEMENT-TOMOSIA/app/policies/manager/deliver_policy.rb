@@ -19,6 +19,10 @@ class Manager::DeliverPolicy < ApplicationPolicy
     user.manager? || user.admin?
   end
 
+  def show?
+    user.manager? || user.admin?
+  end
+
   def create?
     user.manager? || user.admin?
   end

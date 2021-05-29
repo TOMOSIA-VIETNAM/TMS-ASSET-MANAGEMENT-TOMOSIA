@@ -108,3 +108,6 @@
   display: flex;
   justify-content: flex-end;
 }
+.input_search{
+  border-radius: 30px !important;
+}
