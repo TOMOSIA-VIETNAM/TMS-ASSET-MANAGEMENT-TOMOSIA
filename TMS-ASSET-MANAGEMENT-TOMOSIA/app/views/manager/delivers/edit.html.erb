@@ -155,8 +155,8 @@
                 <%= f.select :status,  ['pending', 'handling', 'finish'], {}, { :class => 'filed_select' } %>
               </div>
               <div class="form-group">
-                <%= f.label :reason, :class => "lable"%>
-                <%= f.text_area :reason, :class => "text_area" %>
+                <%= f.label :note, :class => "lable"%>
+                <%= f.text_area :note, :class => "text_area" %>
               </div>
               <div class="form-group btn_submit">
                 <%= link_to "Back", manager_delivers_path, :class => "btn btn-primary btn-submit" %>

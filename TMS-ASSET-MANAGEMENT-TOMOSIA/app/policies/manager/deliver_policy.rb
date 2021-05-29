@@ -33,7 +33,7 @@ class Manager::DeliverPolicy < ApplicationPolicy
 
   def permitted_attributes
     if user.manager? || user.admin?
-      [:status, :reason, :date_deliver]
+      [:status, :note, :date_deliver]
     end
   end
 end

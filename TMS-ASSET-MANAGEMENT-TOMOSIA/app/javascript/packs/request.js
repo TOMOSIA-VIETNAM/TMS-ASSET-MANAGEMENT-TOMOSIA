@@ -2,10 +2,9 @@ $(document).ready(function(){
   $('#request_type_request').on('change',function(){
     var text = $(this).val()
     $.ajax({
-      // dataType: 'JSON',
       method: "GET",
       url: '/employee/requests/change_select',
-      data: { name: text },
+      data: { type_request: text },
       success: function(data){
         console.log(data)        
       }

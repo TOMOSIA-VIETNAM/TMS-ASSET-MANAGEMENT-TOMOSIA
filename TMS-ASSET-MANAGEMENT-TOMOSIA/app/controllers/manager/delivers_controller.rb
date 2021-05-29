@@ -20,12 +20,35 @@ class Manager::DeliversController < Manager::BaseController
     case deliver_params[:status]
 
     when 'finish'
-      if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
-        @deliver.item.update status: "usesing"
-        redirect_to manager_delivers_path
-        flash[:notice] = 'This user was saved successfully'
-      else
-        render :edit
+      case @deliver.request.type_request
+
+      when 'Restore'
+        if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
+          @deliver.item.update status: "stock"
+
+          redirect_to manager_delivers_path
+          flash[:notice] = 'This user was saved successfully'
+        else
+          render :edit
+        end
+      when 'Borrow'
+        if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
+          @deliver.item.update status: "out_stock"
+
+          redirect_to manager_delivers_path
+          flash[:notice] = 'This user was saved successfully'
+        else
+          render :edit
+        end
+      else 'Break'
+        if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
+          @deliver.item.update status: "broken"
+
+          redirect_to manager_delivers_path
+          flash[:notice] = 'This user was saved successfully'
+        else
+          render :edit
+        end
       end
     when 'pending'
       if @deliver.update(deliver_params)

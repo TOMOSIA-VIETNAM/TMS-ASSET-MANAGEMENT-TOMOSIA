@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
   extend Enumerize
   has_one :request
-  has_one :user, through: :request
   serialize :detail, JSON
 
   DETAIL_ATTRIBUTES = %i(CPU RAM Screen	Graphics HardDrive Dimensions year)
@@ -18,10 +17,6 @@ class Item < ApplicationRecord
   scope :items_broken, -> {where status: 'broken'}
   scope :items_stock, -> {where status: 'stock'}
   scope :items_out_stock, -> {where status: 'out_stock'}
-
-  # scope :by_user, -> (user){joins(request: :user).where(user:{id: user.id}) }
-  
-  # Item.joins(request: :user).where(user:{id: @user.id})
 
   def self.search(option)
     case option

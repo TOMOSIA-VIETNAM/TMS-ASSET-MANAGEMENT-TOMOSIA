@@ -141,8 +141,6 @@
         </div>
       </div>
     </nav>
-    <!-- Header -->
-    <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
@@ -151,26 +149,22 @@
               <h6 class="h2 text-white d-inline-block mb-0">Tables List Requests</h6>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <%= link_to "New Request", new_employee_request_path, :class => "btn btn-sm btn-neutral" %>
+              <%= link_to "New Request", new_employee_request_path, method: :get, :class => "btn btn-sm btn-neutral" %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
           <div class="card">
-            <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">Light table</h3>
               <h3 class="mb-0">Total Requests:  <%= @requests.count %></h3>
             </div>
             <div class = 'success_item'>
-              <%flash.each do |name, msg|%>
-                <span class = 'success'> <%= msg %></span>
-              <% end %>
+                <span class = 'success'> <%= flash[:success]%></span>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">

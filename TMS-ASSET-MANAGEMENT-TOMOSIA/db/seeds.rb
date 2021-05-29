@@ -1,6 +1,6 @@
 User.create!(name: "name user",
     email: "example@gmail.com", password:"foobar", password_confirmation: "foobar", role: 1, phone_number: '0123456789', project_id: 1, created_at: Time.zone.now, updated_at: Time.zone.now)
-  50.times do |n|
+  10.times do |n|
     name = Faker::Name.name
     email = "examples-#{n+1}@gmail.com"
     password = "password"
@@ -20,34 +20,20 @@ User.create!(name: "name user",
   end
 
   Item.create!(name: "name user",
-    status: 1, comment: "hang chat luong", price: 900, detail: "thoong tin sp ", category_id: 1, created_at: Time.zone.now, updated_at: Time.zone.now)
-  50.times do |n|
+    status: 1, comment: "hang chat luong", price: 900, detail: {CPU: "Intel Core i7-9th-gen", RAM: "16 GB, DDR4, 2666 MHz", Screen: "16.0\", 3072 x 1920 Pixel, IPS, IPS LCD LED Backlit, True Tone", Graphics: "SSD 512 GB", HardDrive: "AMD Radeon Pro 5300M 4 GB \u0026 Intel UHD Graphics 630",Dimensions: "Mac OS",year: "2021"}, category_id: 1, created_at: Time.zone.now, updated_at: Time.zone.now)
+  10.times do |n|
     name = Faker::Name.name
     status = Random.rand(0..2)
     price = 900
-    detail = "thong tin sp"
+    detail = {CPU: "Intel Core i7-9th-gen", RAM: "16 GB, DDR4, 2666 MHz", Screen: "16.0\", 3072 x 1920 Pixel, IPS, IPS LCD LED Backlit, True Tone", Graphics: "SSD 512 GB", HardDrive: "AMD Radeon Pro 5300M 4 GB \u0026 Intel UHD Graphics 630",Dimensions: "Mac OS",year: "2021"}
     category_id = Random.rand(1..10)
-    # buyer_id = 2
     Item.create!(
       name: name,
       status: status,
       price: price,
       detail: detail,
       category_id: category_id,
-    #   buyer_id: buyer_id,
       created_at: Time.zone.now,
       updated_at: Time.zone.now
     )
   end
-
-users = User.order(:created_at).take(3)
-51.times do
-#   content = Faker::Lorem.sentence(word_count: 5)
-    type_request = "muon thiet bi",
-    reason = "dang mua hang",
-    status = Random.rand(0..2),
-    item_id = Random.rand(1..51)
-    start_day =  Time.zone.now
-    end_day =  Time.zone.now
-    users.each { |user| user.requests.create!(type_request: type_request,reason: reason, status: status, item_id: item_id, start_date: start_day, end_date: end_day) }
-end
