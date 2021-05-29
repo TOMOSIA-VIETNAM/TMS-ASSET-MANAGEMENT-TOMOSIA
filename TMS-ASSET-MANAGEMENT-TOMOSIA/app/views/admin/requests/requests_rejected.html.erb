@@ -177,7 +177,7 @@
           <!-- Card header -->
           <div class="card-header border-0">
             <h3 class="mb-0">Light table</h3>
-            <h3 class="mb-0">Total Requests:  <%= @requests.count %></h3>
+            <h3 class="mb-0">Total Requests:  <%= @requests_rejected.count %></h3>
           </div>
           <div class = 'success_item'>
             <%flash.each do |name, msg|%>
@@ -195,19 +195,18 @@
                   <th scope="col" class="sort" data-sort="status">Status Request</th>
                   <th scope="col">Type Request</th>
                   <th scope="col">Note</th>
-                  <th scope="col" class="sort" data-sort="name">Approve/Reject</th>
                 </tr>
               </thead>
               <tbody class="list">
-                <% if @requests.any? %>
-                <%= render partial: 'request', collection: @requests %>
+                <% if @requests_rejected.any? %>
+                <%= render partial: 'request_rejected', collection: @requests_rejected %>
                 <% end %>
               </tbody>
             </table>
           </div>
           <div class="card-footer py-4">
             <div class="digg_pagination">
-              <%= will_paginate @approves %>
+              <%= will_paginate @requests_rejected %>
             </div>
           </div>
         </div>

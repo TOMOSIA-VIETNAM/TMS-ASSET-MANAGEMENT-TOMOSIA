@@ -23,5 +23,6 @@ class Request < ApplicationRecord
 
   scope :status_pending, -> {where status: 'pending'}
   scope :status_approve, -> {where status: 'approve'}
+  scope :status_reject, -> {where status: 'reject'}
 
 end

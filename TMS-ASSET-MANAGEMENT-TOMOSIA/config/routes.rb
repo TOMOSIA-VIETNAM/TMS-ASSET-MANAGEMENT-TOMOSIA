@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       patch 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
 
+  match '/admin/requests/reject' => 'admin/requests#requests_rejected', :as => 'admin_requests_reject', :via => :get
   match '/admin/items/export_stock' => 'admin/items#export_csv_stock', :as => 'admin_item_export_stock', :via => :get
   match '/admin/items/export_broken' => 'admin/items#export_csv_broken', :as => 'admin_item_export_broken', :via => :get
 

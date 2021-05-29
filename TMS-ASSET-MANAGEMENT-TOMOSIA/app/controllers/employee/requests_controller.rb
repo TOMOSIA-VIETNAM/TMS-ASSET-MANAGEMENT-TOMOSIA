@@ -36,12 +36,14 @@ class Employee::RequestsController < Employee::BaseController
   def change_select
     
     if params[:type_request] == 'Break' || params[:type_request] == 'Restore'
-      @items = current_user.items
+      @items = current_user.items.where(status: 'out_stock')
+
       respond_to do |format|
         format.js {}
       end
     else
       @items = Item.items_stock
+      
       respond_to do |format|
         format.js {}
       end

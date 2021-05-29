@@ -54,6 +54,11 @@ class Admin::RequestsController < Admin::BaseController
 
   end
 
+  def requests_rejected
+    @requests_rejected = Request.status_reject.paginate(page: params[:page], :per_page => 5)
+    authorize @requests_rejected
+  end
+
   private
 
   def policy_scope(scope)

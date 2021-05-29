@@ -32,4 +32,8 @@ class Admin::RequestPolicy < ApplicationPolicy
   def create?
     user.admin?
   end
+  
+  def requests_rejected?
+    user.admin?
+  end
 end
