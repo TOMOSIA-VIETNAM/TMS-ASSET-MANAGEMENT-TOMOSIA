@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   extend Enumerize
-  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
   
   belongs_to :user
   belongs_to :item
