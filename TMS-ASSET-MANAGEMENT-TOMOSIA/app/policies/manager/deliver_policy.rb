@@ -3,6 +3,8 @@ class Manager::DeliverPolicy < ApplicationPolicy
     def resolve
       if user.role == "manager" || user.admin?
         scope.all
+      else
+        raise Pundit::NotAuthorizedError, '404 not found'
       end
     end
   end
