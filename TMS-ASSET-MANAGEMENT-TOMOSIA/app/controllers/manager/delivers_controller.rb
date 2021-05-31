@@ -22,10 +22,10 @@ class Manager::DeliversController < Manager::BaseController
     when 'finish'
       case @deliver.request.type_request
 
-      when 'Restore'
+      when 'Restore' 
         if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
           @deliver.item.update status: "stock"
-
+          deliver_slack
           redirect_to manager_delivers_path
           flash[:notice] = 'This user was saved successfully'
         else
@@ -34,7 +34,7 @@ class Manager::DeliversController < Manager::BaseController
       when 'Borrow'
         if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
           @deliver.item.update status: "out_stock"
-
+          deliver_slack
           redirect_to manager_delivers_path
           flash[:notice] = 'This user was saved successfully'
         else
@@ -43,7 +43,7 @@ class Manager::DeliversController < Manager::BaseController
       else 'Break'
         if @deliver.update(deliver_params.merge(date_deliver: Time.zone.now.to_date))
           @deliver.item.update status: "broken"
-
+          deliver_slack
           redirect_to manager_delivers_path
           flash[:notice] = 'This user was saved successfully'
         else
@@ -67,6 +67,10 @@ class Manager::DeliversController < Manager::BaseController
     else
       render :edit
     end
+  end
+  def deliver_slack
+    notifier = Slack::Notifier.new Request::WEBHOOK_URL
+    notifier.post text:"DELIVER FINISH \n User Name: #{current_user.name}\n Type Request: #{@deliver.type_deliver}\n  Devices: #{@deliver.item.name}\n status: #{@deliver.status}\n Note: #{@deliver.note} "
   end
 
   private
