@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   match '/admin/requests/reject' => 'admin/requests#requests_rejected', :as => 'admin_requests_reject', :via => :get
   match '/admin/items/export_stock' => 'admin/items#export_csv_stock', :as => 'admin_item_export_stock', :via => :get
   match '/admin/items/export_broken' => 'admin/items#export_csv_broken', :as => 'admin_item_export_broken', :via => :get
+  match '/admin/items/export_total_items' => 'admin/items#export_csv_total_item', :as => 'admin_item_export_total_items', :via => :get
 
   resources :users
   resources :items

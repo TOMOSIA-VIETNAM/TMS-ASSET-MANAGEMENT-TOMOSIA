@@ -8,11 +8,13 @@ class Admin::ItemsController < Admin::BaseController
     @items_stock_search = Item.items_stock.paginate(page: params[:items_stock], :per_page => 5)
     @items_stock = @items_stock_search.search(params[:search_stock])
 
+    @items_total = Item.search(params[:search_items_total]).paginate(page: params[:items_total], :per_page => 5)
 
     authorize @items_broken
     authorize @items_stock
     authorize @items_broken_search
     authorize @items_stock_search
+    authorize @items_total
   end
 
   def export_csv_broken
@@ -32,6 +34,16 @@ class Admin::ItemsController < Admin::BaseController
       format.html
       format.csv { send_data csv.perform,
         filename: "item stock.csv" }
+    end
+  end
+
+  def export_csv_total_item
+    csv = ExportCsvService.new Item.all, Item::CSV_ATTRIBUTES
+    respond_to do |format|
+      format.json
+      format.html
+      format.csv { send_data csv.perform,
+        filename: "total items.csv" }
     end
   end
 
