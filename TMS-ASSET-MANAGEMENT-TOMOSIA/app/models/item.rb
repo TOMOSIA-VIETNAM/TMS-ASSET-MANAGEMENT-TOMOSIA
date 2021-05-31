@@ -24,6 +24,8 @@ class Item < ApplicationRecord
       where('name LIKE ?', "%#{option}%")
     when option
       where('name LIKE ?', "%#{option}%")
+    when option
+      where('name LIKE ?', "%#{option}%")
     else
       all
     end
