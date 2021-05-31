@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   namespace :manager do
     resources :items
+    resources :deliver_alls
     resources :delivers
     resources :devices
   end

@@ -3,7 +3,7 @@ class Manager::DeliversController < Manager::BaseController
   before_action :set_deliver, only: [:show, :edit, :update, :destroy]
 
   def index
-    @delivers_list = policy_scope(Deliver).paginate(page: params[:page], :per_page => 5)
+    @delivers_list = policy_scope(Deliver.status_procces).paginate(page: params[:page], :per_page => 8)
     authorize @delivers_list
     @delivers = if params[:term]
       @delivers_list.search(params[:term])

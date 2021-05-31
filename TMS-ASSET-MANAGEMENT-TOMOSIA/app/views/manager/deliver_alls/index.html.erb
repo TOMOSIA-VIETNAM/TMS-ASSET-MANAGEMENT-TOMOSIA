@@ -4,6 +4,20 @@
   <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-search navbar-search-light form-inline mr-sm-3 __web-inspector-hide-shortcut__" id="navbar-search-main">
+          <%= form_for( manager_delivers_path, method: :get) do %>
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                  <%= text_field_tag :term,{}, :placeholder => "Search", :class =>"form-control input_search"%>
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+            </button>
+          <% end %>
+        </div>
         <ul class="navbar-nav align-items-center  ml-md-auto ">
           <li class="nav-item d-xl-none">
             <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
@@ -61,12 +75,14 @@
       </div>
     </div>
   </nav>
+  <!-- Header -->
+  <!-- Header -->
   <div class="header bg-primary pb-6">
     <div class="container-fluid">
       <div class="header-body">
         <div class="row align-items-center py-4">
           <div class="col-lg-6 col-7">
-            <h2 class="h2 text-white d-inline-block mb-0">Devices Brokens and Stock </h2>
+            <h2 class="h2 text-white d-inline-block mb-0">Tables List Delivers</h2>
           </div>
           <div class="col-lg-6 col-5 text-right">
           </div>
@@ -79,14 +95,7 @@
       <div class="col">
         <div class="card">
           <div class="card-header border-0">
-            <div class = 'row'>
-              <div class='col-lg-9 col-9 '>
-                <h3 class="mb-0">Total Brokens: <%= @status_brokens.count%></h3> 
-              </div>
-              <div class="col-lg-3 col-3 text-right">
-                <%= render partial: 'search_broken'%>
-              </div>
-            </div>
+            <h3 class="mb-0">Total Delivers:  <%= @delivers.count %></h3>
           </div>
           <div class = 'success_item'>
             <%flash.each do |name, msg|%>
@@ -97,67 +106,27 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">Name</th>
-                  <th scope="col" class="sort" data-sort="name">Comment</th>
-                  <th scope="col" class="sort" data-sort="budget">Price</th>
-                  <th scope="col" class="sort" data-sort="budget">Detail</th>
-                  <th scope="col" class="sort" data-sort="budget">Status</th>
-                  <th scope="col">Action</th>
+                  <th scope="col" class="sort" data-sort="name">Name User</th>
+                  <th scope="col" class="sort" data-sort="name">Name Request</th>
+                  <th scope="col" class="sort" data-sort="name">Name Device</th>
+                  <th scope="col" class="sort" data-sort="budget">Start Date</th>
+                  <th scope="col" class="sort" data-sort="budget">End_Date</th>
+                  <th scope="col" class="sort" data-sort="status">Rason User</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="sort" data-sort="status">Note</th>
+                  <th scope="col" class="sort" data-sort="status">Date Delivery</th>
                 </tr>
               </thead>
               <tbody class="list">
-                <% if @status_brokens.any? %>
-                  <%= render partial: "item", collection: @status_brokens %>
+                <% if @delivers.any? %>
+                  <%= render partial: "item", collection: @delivers %>
                 <% end %>
               </tbody>
             </table>
           </div>
           <div class="card-footer py-4">
             <div class="digg_pagination">
-              <%= link_to t(".link_export"), manager_item_export_broken_path(format: :csv), class: "btn btn-primary btn-submit" %>
-              <%= will_paginate @status_brokens, :param_name => 'items_broken'  %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <div class="card bg-default shadow">
-          <div class="card-header bg-transparent border-0">
-              <div class = 'row'>
-              <div class='col-lg-9 col-9 '>
-                <h3 class="mb-0 table-dark">Total Stock: <%= @status_stock.count%></h3> 
-              </div>
-              <div class="col-lg-3 col-3 text-right">
-                <%= render partial: 'search_stock'%>
-              </div>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-dark table-flush">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col" class="sort" data-sort="name">Name</th>
-                  <th scope="col" class="sort" data-sort="name">Comment</th>
-                  <th scope="col" class="sort" data-sort="budget">Price</th>
-                  <th scope="col" class="sort" data-sort="budget">Detail</th>
-                  <th scope="col" class="sort" data-sort="budget">Status</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody class="list">
-              <% if @status_stock.any? %>
-                  <%= render partial: "item", collection: @status_stock %>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <div class="digg_pagination">
-              <%= link_to t(".link_export"), manager_item_export_stock_path(format: :csv), class: "btn btn-primary btn-submit"%>
-              <%= will_paginate @status_stock, :param_name => 'items_stock'  %>
+              <%= will_paginate @delivers %>
             </div>
           </div>
         </div>

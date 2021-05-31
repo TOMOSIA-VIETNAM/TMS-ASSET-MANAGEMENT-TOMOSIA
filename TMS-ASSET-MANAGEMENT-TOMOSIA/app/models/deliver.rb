@@ -13,12 +13,13 @@ class Deliver < ApplicationRecord
 
   def self.search(term)
     if term
-      where('status LIKE ?', "%#{term}%")
+      where('type_deliver LIKE ?', "%#{term}%")
     else
       all
     end
   end
 
   scope :status_finish, -> {where status: 'finish'}
+  scope :status_procces, -> {where status: 'handling' || 'pending'}
 
 end
