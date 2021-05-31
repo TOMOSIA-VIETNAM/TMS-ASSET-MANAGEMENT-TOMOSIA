@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :employees, :controller => 'employees'
     resources :items
     resources :dashboards
+    resources :delivers, only: [:index]
   end
 
   namespace :manager do
