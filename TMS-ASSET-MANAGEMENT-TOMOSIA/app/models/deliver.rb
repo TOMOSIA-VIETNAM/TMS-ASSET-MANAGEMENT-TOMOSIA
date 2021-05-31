@@ -20,6 +20,6 @@ class Deliver < ApplicationRecord
   end
 
   scope :status_finish, -> {where status: 'finish'}
-  scope :status_procces, -> {where status: 'handling' || 'pending'}
+  scope :status_procces, -> {where status: ['handling', 'pending']}
 
 end
