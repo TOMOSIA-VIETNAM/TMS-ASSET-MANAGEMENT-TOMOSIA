@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :requests 
   has_many :items, through: :requests
   has_many :projects
-  has_many :items, through: :requests
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
