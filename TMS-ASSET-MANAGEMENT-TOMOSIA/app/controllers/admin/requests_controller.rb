@@ -24,10 +24,7 @@ class Admin::RequestsController < Admin::BaseController
 
     if @deliver.save
       notifier = Slack::Notifier.new Request::WEBHOOK_URL
-      notifier.post text:"User Name: #{current_user.name}
-                          Type Request: #{@request.type_request}
-                          Devices: #{@request.item.name}
-                          Reason: #{@request.reason}"
+      notifier.post text:"APPROVE\n User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n Devices: #{@request.item.name}\n Reason: #{@request.reason}"
       flash[:notice] = 'Deliver was saved.'
       redirect_to admin_requests_path
     else
@@ -46,6 +43,8 @@ class Admin::RequestsController < Admin::BaseController
     authorize @request
 
     if @request.update(reject_params)
+      notifier = Slack::Notifier.new Request::WEBHOOK_URL
+      notifier.post text:"REJECT\n User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n Devices: #{@request.item.name}\n Reason: #{@request.reason} \n Note: #{@request.note}"
       flash[:notice] = 'Status was updated.'  
       redirect_to admin_requests_path
     else

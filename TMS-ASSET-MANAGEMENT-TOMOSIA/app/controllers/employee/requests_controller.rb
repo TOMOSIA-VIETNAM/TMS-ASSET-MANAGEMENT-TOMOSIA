@@ -36,7 +36,7 @@ class Employee::RequestsController < Employee::BaseController
   def request_set
     if @request.save
       notifier = Slack::Notifier.new Request::WEBHOOK_URL
-      notifier.post text:"User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n  Devices: #{@request.item.name}\n Reason: #{@request.reason} "
+      notifier.post text:"CREATE REQUEST\n User Name: #{current_user.name}\n Type Request: #{@request.type_request}\n  Devices: #{@request.item.name}\n Reason: #{@request.reason} "
 
       flash[:notice] = 'This user was saved successfully'
       redirect_to employee_requests_path 
@@ -48,15 +48,13 @@ class Employee::RequestsController < Employee::BaseController
   def check_deliver
     if !@item_request.request.deliver.nil?
       if @item_request.request.deliver.status == 'finish' && @item_request.status == 'out_stock'
-
         request_set
       else
         flash[:error] = 'Request for this item process '
         render :new
       end
-    else
-      flash[:error] = 'Request for this item process '
-      render :new
+    elsif @item_request.request.status == 'reject'
+      request_set
     end
   end
 
