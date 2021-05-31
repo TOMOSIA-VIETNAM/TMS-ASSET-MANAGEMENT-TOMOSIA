@@ -16,6 +16,14 @@
   <td class="budget">
     <%= request_approved.deliver.status %>
   </td>
+   <td class="budget">
+    CPU:
+    <%= request_approved.item.detail["CPU"] %>,
+    RAM:
+    <%= request_approved.item.detail["RAM"] %>,
+    Hard Drive:
+    <%= request_approved.item.detail["HardDrive"] %>
+  </td>
 </tr>
 <%if request_approved.deliver.item.status.out_stock?%>
   <%@count = @count + 1 %>

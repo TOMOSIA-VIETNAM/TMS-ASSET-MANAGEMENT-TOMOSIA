@@ -17,6 +17,11 @@ class Admin::ItemsController < Admin::BaseController
     authorize @items_total
   end
 
+  def show
+    @item = Item.find_by(id: params[:id])
+    authorize @item
+  end
+
   def export_csv_broken
     csv = ExportCsvService.new Item.items_broken, Item::CSV_ATTRIBUTES
     respond_to do |format|
