@@ -44,6 +44,12 @@
               <%= link_to 'List Request Rejected', admin_requests_reject_path, :class => "nav-link"%>
             </span>
           </li>
+          <li class="nav-item">
+            <span class="nav-link" >
+              <i class="ni ni-bullet-list-67 text-default"></i>
+              <%= link_to 'List Delivers', admin_delivers_path, :class => "nav-link"%>
+            </span>
+          </li> 
         </ul>
       </div>
     </div>
@@ -122,7 +128,6 @@
         <div class="card">
           <!-- Card header -->
           <div class="card-header border-0">
-            <h3 class="mb-0">Light table</h3>
             <h3 class="mb-0">Total Requests:  <%= @requests_rejected.count %></h3>
           </div>
           <div class = 'success_item'>
