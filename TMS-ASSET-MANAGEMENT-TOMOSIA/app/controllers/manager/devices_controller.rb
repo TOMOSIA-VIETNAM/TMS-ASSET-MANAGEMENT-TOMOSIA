@@ -5,11 +5,11 @@ class Manager::DevicesController < Manager::BaseController
   def index
     @status_stock_list = Item.items_stock.paginate(page: params[:items_stock], :per_page => 6)
     authorize @status_stock_list
-    @status_stock = @status_stock_list.search(search_stock: params[:search_stock])
+    @status_stock = @status_stock_list.search(params[:search_stock])
 
     @status_brokens_list = Item.items_broken.paginate(page: params[:items_broken], :per_page => 6)
     authorize @status_brokens_list
-    @status_brokens = @status_brokens_list.search(search_broken: params[:search_broken])
+    @status_brokens = @status_brokens_list.search(params[:search_broken])
   end
 
   def show; end
