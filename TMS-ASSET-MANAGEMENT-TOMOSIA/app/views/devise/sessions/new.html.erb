@@ -47,6 +47,10 @@
       <div class="col-lg-5 col-md-7">
         <div class="card bg-secondary border-0 mb-0">
           <div class="card-body px-lg-5 py-lg-5">
+            <div class="container-fluid">
+              <p class = 'errors'><%= notice %></p>
+              <p class="errors"><%= alert %></p>
+            </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="form-group">
                 <%= f.label :email %><br />
