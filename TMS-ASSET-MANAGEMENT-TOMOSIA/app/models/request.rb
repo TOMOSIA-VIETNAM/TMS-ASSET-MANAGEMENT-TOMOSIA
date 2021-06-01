@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   extend Enumerize
-  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'
   
   belongs_to :user
   belongs_to :item
@@ -10,7 +10,7 @@ class Request < ApplicationRecord
     pending: 0,
     approve: 1,
     reject: 2
-  }
+  }, predicates: true
 
   enumerize :type_request, :in => {
     Borrow: 0,
@@ -19,17 +19,16 @@ class Request < ApplicationRecord
   }
 
   validates :reason,:start_date, :end_date, presence: true
-  
+
   validate :start_date_is_equal_today
   validate :end_date_is_after_start_date
 
   def self.search(term)
-    if term
-      where('type_request LIKE ?', "%#{term}%")
+    if term.present?
+      where(status: term)
     else
       all
     end
-
   end
 
   def end_date_is_after_start_date

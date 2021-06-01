@@ -19,12 +19,7 @@ class Item < ApplicationRecord
   scope :items_out_stock, -> {where status: 'out_stock'}
 
   def self.search(option)
-    case option
-    when option
-      where('name LIKE ?', "%#{option}%")
-    when option
-      where('name LIKE ?', "%#{option}%")
-    when option
+    if option
       where('name LIKE ?', "%#{option}%")
     else
       all
